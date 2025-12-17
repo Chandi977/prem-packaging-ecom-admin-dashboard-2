@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { loadingAction } from "../redux/loadingAction";
-import { DEV } from "./constants";
+import { PRODUCTION } from "./constants";
 import { isJwtExpired } from "jwt-check-expiration";
 
 export const handlePostRequest =
@@ -10,10 +10,10 @@ export const handlePostRequest =
         let token = localStorage.getItem("token");
         try {
             if (isShowLoad) dispatch(loadingAction(true));
-            console.log("POST request URL:", `${DEV + url}`); // Debug: log the URL
+            console.log("POST request URL:", `${PRODUCTION + url}`); // Debug: log the URL
             const response = await axios({
                 method: "post",
-                url: `${DEV + url}`,
+                url: `${PRODUCTION + url}`,
                 data: data,
                 headers: {
                     "Content-Type": "application/json",
